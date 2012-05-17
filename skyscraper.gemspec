@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Adam Dratwinski"]
   gem.email         = ["arboooz@gmail.com"]
   gem.description   = %q{Library that helps scraping data from websites in easy way}
-  gem.summary       = %q{Library that helps scraping data from websites in easy way}
+  gem.summary       = %q{Skyscraper allows you to traversing through html nodes, similary to jquery, it provides methods like parent, children, first, find, siblings etc. Thanks to Skyscraper you can fetch all HTML attributes on any node. Furthermore it's allow to download images, webpages, and store content in the database. Please visit Github account for more details.}
   gem.homepage      = "https://github.com/boooz/skyscraper"
 
   gem.files         = `git ls-files`.split($\)
