@@ -4,8 +4,8 @@ require File.expand_path('../lib/skyscraper/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Adam Dratwinski"]
   gem.email         = ["arboooz@gmail.com"]
-  gem.summary       = %q{Library that helps scraping data from websites in easy way}
-  gem.description   = %q{Library that helps scraping data from websites in easy way. Skyscraper allows you to traversing through html nodes, similary to jquery, it provides methods like parent, children, first, find, siblings etc. Thanks to Skyscraper you can fetch all HTML attributes on any node. Furthermore it's allow to download images, webpages, and store content in the database. Please visit Github account for more details.}
+  gem.summary       = %q{Easy to use DSL that helps scraping data from websites}
+  gem.description   = %q{Easy to use DSL that helps scraping data from websites. Thanks to it, writing web crawlers would be very fast and intuitive. Traversing through html nodes and fetching all of the HTML attributes, would be possible. Just like in jQuery - you will find methods like parent, children, first, find, siblings etc. Furthermore, you are able to download images, web pages, and store all content in the database. Please visit my Github account for more details.}
   gem.homepage      = "https://github.com/boooz/skyscraper"
 
   gem.files         = `git ls-files`.split($\)
