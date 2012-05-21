@@ -16,7 +16,7 @@ describe Skyscraper do
   end
 
   it "should fetch remote page" do
-    Skyscraper::fetch("http://google.com").should be_an Skyscraper::Node::Base
+    Skyscraper::fetch("http://google.com").should be_an Skyscraper::Node
   end
 
   it "static method fetch should works" do

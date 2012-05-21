@@ -69,7 +69,7 @@ describe Skyscraper::Results do
       @call_count = 0
       callback = proc do |result, page|  
         result.should be_an_instance_of(Hash)
-        page.should be_an_instance_of(Skyscraper::Node::Base)
+        page.should be_an_instance_of(Skyscraper::Node)
         @call_count += 1
       end
 

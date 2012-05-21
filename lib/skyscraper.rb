@@ -16,6 +16,7 @@ module Skyscraper
   autoload :Node
   autoload :Pages
   autoload :Path
+  autoload :Resource
   autoload :Results
   
   mattr_accessor :defaults
@@ -24,7 +25,6 @@ module Skyscraper
     limit: nil,
     encoding: "utf-8",
     download_path: "/tmp/skyscraper/:sequence/:file_name", 
-#    reattempt_times: 1,
     noise_errors: true,
     skip_on_error: true
   }
@@ -35,7 +35,7 @@ module Skyscraper
 
   def self.fetch path, encoding = Skyscraper.config.encoding
     document = Skyscraper::Document.load path, encoding
-    Node::Base.new document.css("html")
+    Node.new document.css("html")
   end
 
   def fetch
