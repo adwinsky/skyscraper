@@ -40,8 +40,9 @@ module Skyscraper
             result[field.name] = field.find_in_document document 
           end
 
-          call_callbacks @after_each, result, document
+          callback_result = call_callbacks @after_each, result, document
           results << result
+          break if callback_result === false
           sleep @delay[:sleep] if (i+1) % @delay[:after] == 0
 
         rescue SocketError, Errno::ENOENT
@@ -82,9 +83,11 @@ module Skyscraper
     end
 
     def call_callbacks callbacks, *args
+      result = true
       callbacks.each do |callback|
-        callback.call(*args)
+        result = callback.call(*args)
       end
+      result
     end
   end
 

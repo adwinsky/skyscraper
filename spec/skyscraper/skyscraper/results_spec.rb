@@ -1,3 +1,7 @@
+require "skyscraper"
+require "support/skyscraper_helpers"
+include SkyscraperHelpers
+
 describe Skyscraper::Results do
   def fetch options = {}
     options.reverse_merge! fields: {}, options: {} 
@@ -72,7 +76,7 @@ describe Skyscraper::Results do
         page.should be_an_instance_of(Skyscraper::Node)
         @call_count += 1
       end
-
+      
       results = fetch path: [path_to("skyscraper-fetch.html")] * 10, options: { after_each: [callback] }
 
       @call_count.should == 10
@@ -117,6 +121,21 @@ describe Skyscraper::Results do
       results[0][:h1].should == "Hello world"
     end
 
+    it "should stops when after each callback returns false" do
+      counter = 0
+
+      callback = proc do 
+        if counter == 1
+          counter = 0
+          false
+        else
+          counter += 1
+        end
+      end
+
+      results = fetch path: [path_to("skyscraper-fetch.html")] * 10, fields: { h1: "h1" }, options: { after_each: [callback] }
+      results.length.should == 2
+    end
   end
 
   describe "errors" do
