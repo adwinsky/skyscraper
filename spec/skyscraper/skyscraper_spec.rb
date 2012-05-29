@@ -27,6 +27,10 @@ describe Skyscraper do
     Skyscraper::fetch(path_to("skyscraper-encoding.html")).first(".utf-8").text.should == "ąśćżół"
   end
 
+  it "should handle http -> https redirects" do
+    Skyscraper::fetch("http://github.com").first("title").text.should =~ /GitHub/
+  end
+
   it "should works when included" do
     TestScraper.new.fetch[0][:h1].should == "Hello world"
     TestScraper.new.fetch[1][:h1].should == "Hello world"
