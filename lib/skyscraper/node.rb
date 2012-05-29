@@ -97,5 +97,15 @@ module Skyscraper
     def tag
       @element.name
     end
+
+    def submit params = {}
+      form_path = @element.document.path.full_path_for(self.action)
+      file = Net::HTTP.post_form(URI.parse(form_path), params).body
+
+      document = Skyscraper::Document.parse file
+      document.path = form_path
+      Node.new(document.css("html"))
+      #@todo factory code above config utf8 is not passed
+    end
   end
 end

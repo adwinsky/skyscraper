@@ -2,6 +2,7 @@ require "open-uri"
 require "uri"
 require "nokogiri"
 require "active_support/core_ext"
+require "net/http"
 
 include ActiveSupport
 
@@ -37,6 +38,7 @@ module Skyscraper
     document = Skyscraper::Document.load path, encoding
     Node.new document.css("html")
   end
+
 
   def fetch
     self.class.send(:base).fetch 

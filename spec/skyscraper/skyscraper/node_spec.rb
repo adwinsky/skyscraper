@@ -82,6 +82,26 @@ describe Skyscraper::Node do
     it "should returns node tag" do
       @node.tag.should == "ul"
     end
+
+    describe "Submit post data" do
+      it "should submit form post data" do
+        node = Skyscraper::fetch("http://www.balticplaza.eu/kontakt").first("#new_inquiry") #todo choose another site to test
+        submited_page = node.submit(:"inquiry[name]" => "Example name")
+        submited_page.first("#inquiry_name").value.should == "Example name"
+      end
+
+      it "should throws an LocalFormException" do
+        pending
+      end
+
+      it "should handle GET form method" do
+        pending
+      end
+
+      it "should throws NotFormException" do
+        pending
+      end
+    end
   end
 end
 
