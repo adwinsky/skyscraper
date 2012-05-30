@@ -15,8 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Skyscraper::VERSION
 
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "rake"
-  gem.add_dependency "nokogiri"
-  gem.add_dependency "actionpack"
+  gem.add_development_dependency "rspec", ["~> 2.10.0"]
+  gem.add_development_dependency "rake", ["~> 0.9.2.2"]
+  gem.add_dependency "nokogiri", ["~> 1.5.2"]
+  gem.add_dependency "actionpack", ["~> 3.2.2"]
 end
