@@ -102,7 +102,7 @@ module Skyscraper
       raise Skyscraper::LocalFormException if @element.document.path.local?
       raise Skyscraper::NotActionException if self.action.blank?
 
-      path = @element.document.path.full_path_for(self.action)
+      path      = @element.document.path.full_path_for(self.action)
       document  = Skyscraper::Document.load_post path, params
 
       Node.new(document.css("html"))
