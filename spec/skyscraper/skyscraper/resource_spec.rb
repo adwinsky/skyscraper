@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Resource do
   def should_download_resource_to node, path, options = {}
     resource = Skyscraper::Resource.new(node)

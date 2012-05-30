@@ -8,9 +8,15 @@ module Skyscraper
       document
     end
 
-    def self.open_from_path path
-      file = false
+    def self.load_post path, params = {}, encoding = 'utf-8'
+      file = Net::HTTP.post_form(URI.parse(path), params).body
 
+      document = Skyscraper::Document.parse file
+      document.path = path
+      document
+    end
+
+    def self.open_from_path path
       begin 
         file = open(path)
       rescue RuntimeError
@@ -20,7 +26,6 @@ module Skyscraper
 
       file
     end
-  end
-  class ResourceOpenFailedException < Exception
+
   end
 end

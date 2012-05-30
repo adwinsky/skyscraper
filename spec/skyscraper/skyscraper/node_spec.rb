@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Node do
   describe "when is initialized" do
     before(:each) do
@@ -82,25 +84,32 @@ describe Skyscraper::Node do
     it "should returns node tag" do
       @node.tag.should == "ul"
     end
+  end
 
-    describe "Submit post data" do
-      it "should submit form post data" do
-        node = Skyscraper::fetch("http://www.balticplaza.eu/kontakt").first("#new_inquiry") #todo choose another site to test
-        submited_page = node.submit(:"inquiry[name]" => "Example name")
-        submited_page.first("#inquiry_name").value.should == "Example name"
-      end
+  describe "Submit post data" do
+    it "should submit form post data" do
+      node = Skyscraper::fetch("http://www.balticplaza.eu/kontakt").first("#new_inquiry") 
+      submited_page = node.submit(:"inquiry[name]" => "Example name")
+      submited_page.first("#inquiry_name").value.should == "Example name"
+    end
 
-      it "should throws an LocalFormException" do
-        pending
-      end
+    it "should throws an LocalFormException" do
+      lambda do
+        node = Skyscraper::fetch(path_to("skyscraper-node-form.html"))
+        node.first("form").submit
+      end.should raise_error Skyscraper::LocalFormException
+    end
 
-      it "should handle GET form method" do
-        pending
-      end
+    it "should throws NotActionException" do
+      Skyscraper::Path::Local.any_instance.stub(:local? => false)
 
-      it "should throws NotFormException" do
-        pending
-      end
+      lambda do
+        Skyscraper::fetch(path_to("skyscraper-node-traversing.html")).first(".menu").submit
+      end.should raise_error Skyscraper::NotActionException
+    end
+
+    it "should handle GET form method" do
+      pending "todo"
     end
   end
 end

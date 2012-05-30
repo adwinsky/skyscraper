@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Field do
   before(:all) do
     @page = Skyscraper::fetch(path_to("skyscraper-field.html"))

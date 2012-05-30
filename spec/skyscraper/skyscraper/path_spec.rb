@@ -6,6 +6,14 @@ describe Skyscraper::Path do
       @path = Skyscraper::Path.factory("http://google.com/index.php?q=e")
     end
 
+    it "local? method should returns false" do
+      @path.local?.should == false
+    end
+
+    it "remote? method should returns true" do
+      @path.remote?.should == true
+    end
+
     it "should returns domain" do
       @path.domain.should == "http://google.com"
     end
@@ -63,6 +71,14 @@ describe Skyscraper::Path do
 
     it "should returns folder" do
       @path.folder.should == "/var/www/files/"
+    end
+
+    it "local? method should returns true" do
+      @path.local?.should == true
+    end
+
+    it "remote? method should returns false" do
+      @path.remote?.should == false
     end
 
     it "should returns file name" do

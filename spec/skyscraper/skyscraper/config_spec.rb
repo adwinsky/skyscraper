@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Config do
   it "should set variable on initialize" do
     config = Skyscraper::Config.new foo: "bar"

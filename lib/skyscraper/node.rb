@@ -99,13 +99,18 @@ module Skyscraper
     end
 
     def submit params = {}
-      form_path = @element.document.path.full_path_for(self.action)
-      file = Net::HTTP.post_form(URI.parse(form_path), params).body
+      raise Skyscraper::LocalFormException if @element.document.path.local?
+      raise Skyscraper::NotActionException if self.action.blank?
 
-      document = Skyscraper::Document.parse file
-      document.path = form_path
+      path = @element.document.path.full_path_for(self.action)
+      document  = Skyscraper::Document.load_post path, params
+
       Node.new(document.css("html"))
-      #@todo factory code above config utf8 is not passed
     end
+  end
+
+  class LocalFormException < Exception
+  end
+  class NotActionException < Exception
   end
 end

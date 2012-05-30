@@ -5,6 +5,14 @@ module Skyscraper
         Path::factory(self.full_path_for(path))
       end
 
+      def local?
+        self.is_a? Skyscraper::Path::Local
+      end
+
+      def remote?
+        self.is_a? Skyscraper::Path::Remote
+      end
+
       private
 
       def get_file_name path

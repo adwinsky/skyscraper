@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Base do
 
   it "should set pages" do

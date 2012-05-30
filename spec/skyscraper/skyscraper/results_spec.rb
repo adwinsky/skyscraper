@@ -1,6 +1,4 @@
-require "skyscraper"
-require "support/skyscraper_helpers"
-include SkyscraperHelpers
+require "spec_helper"
 
 describe Skyscraper::Results do
   def fetch options = {}

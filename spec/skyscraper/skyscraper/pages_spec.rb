@@ -1,3 +1,5 @@
+require "spec_helper"
+
 describe Skyscraper::Pages do
   it "should set convert string to items array" do
     Skyscraper::Pages.new("http://google.com").items.should == ["http://google.com"]
