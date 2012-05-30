@@ -1,5 +1,3 @@
-# Skyscraper
-
 ## Installation
 
 **Skyscraper** installation is simple, just run:
@@ -147,6 +145,19 @@ You can either provide download path and new file name in arguments. Default pat
 
 \#download method returns path to saved file. 
 
+## Submiting
+
+You are also able to submit forms (currently only with POST method), by doing following:
+
+```ruby
+>> node = Skyscraper::fetch("http://www.balticplaza.eu/kontakt").first("#new_inquiry") 
+# => #<Skyscraper::Node:0x9f43d88 @element=#<Nokogiri::XML::Element:0x4fa1ece name="form" ...
+>> submited_page = node.submit(:"inquiry[name]" => "Example name")
+# => #<Skyscraper::Node:0x9e82f84 @element=[#<Nokogiri::XML::Element:0x4f41920 name="html" ...
+>> submited_page.first("#inquiry_name").value
+# => "Example name"
+```
+
 ## Configuration
 
 Please visit [Configuration section](wiki/configuration) to get all details of **Skyscraper** configuration.
@@ -165,9 +176,7 @@ Please consider that you can fetch not only remote sites but also local files. T
 
 ## What is consider to be added?
 
-* POST requests support
-* Reattempt fetching on errors
-* Redirects support
+* Fetch reattempt on errors
 * Testing mode - downloading only small amount of records, and showing how they would look in database
 * Ruby < 1.9 versions support
 * Redis, ActiveRecord cache and storage
